@@ -5,12 +5,19 @@ def ECB_Data_Loader(dataset, years, key):
     import requests
     import pandas as pd
     import io
-    # This needs to be adjusted based on the data query code specifics 
-    # (monthly values wont pull datasets with quarterly or annual data granularity
-    start_MM_DD = ['01-01','02-01','03-01','04-01','05-01','06-01',
-                   '07-01','08-01','09-01','10-01','11-01','12-01']
-    end_MM_DD = ['01-31', '02-28', '03-31', '04-30','05-31', '06-30',
-                 '07-31', '08-31','09-30', '10-31', '11-30', '12-31']
+    # I've set up the below statements to check what data params should be utilized based on the dataset & data code specifics
+    # you cant use MM-DD data params for ECB-ESTAT datasets that have a Quarterly or Annual data date granularity
+    if key[0] == 'M':
+        print('KEY = ', 'M')
+        start_MM_DD = ['01-01','02-01','03-01','04-01','05-01','06-01',
+                       '07-01','08-01','09-01','10-01','11-01','12-01']
+        end_MM_DD = ['01-31', '02-28', '03-31', '04-30','05-31', '06-30',
+                     '07-31', '08-31','09-30', '10-31', '11-30', '12-31']
+    if key[0] == 'Q':
+        print('KEY = ', 'Q')
+        start_MM_DD = ['01-01', '04-01', '07-01', '10-01']
+        end_MM_DD = ['03-31', '06-30', '09-30', '12-31']
+
 
     # Initialize DataFrame
     BSI_df = pd.DataFrame()
@@ -19,8 +26,13 @@ def ECB_Data_Loader(dataset, years, key):
         entrypoint = 'https://sdw-wsrest.ecb.europa.eu/service/'
         resource = 'data'
         flowRef = dataset
+        if key[0] == 'M':
+            range_len = 12
+        if key[0] == 'Q':
+            range_len = 4
 
-        for i in range(12):   
+        print('range_len =', range_len)
+        for i in range(range_len):  # Corrected month iteration
             parameters = {
                 'startPeriod': f"{year}-{start_MM_DD[i]}",
                 'endPeriod': f"{year}-{end_MM_DD[i]}",
@@ -52,12 +64,12 @@ def ECB_Data_Loader(dataset, years, key):
             print('==============================')
 
             BSI_df = pd.concat([BSI_df, pd.DataFrame([{
-                'start_period': f"{year}-{start_MM_DD[i]}",  
+                'start_period': f"{year}-{start_MM_DD[i]}",   
                 'end_data': f"{year}-{end_MM_DD[i]}",
                 'dataset': flowRef,
                 'query': key,
                 'OBS_value': obs_value
             }])], ignore_index=True)
 
-    return BSI_df  
+    return BSI_df  # Return the DataFrame
 
