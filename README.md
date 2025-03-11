@@ -54,9 +54,12 @@ EEX Energy Prices	Electricity, gas, freight market prices	Daily / Monthly
 
 🔹 2️⃣ Model Training & Prediction
 🚀 Algorithm: XGBoost Regressor
-🔢 Training Data: 2017 – 2021
+🔢 Advised Training Data: 2017 – 2021 
+      - Many datasets relevent to HICP inflation start to have datagaps prior to 2017, making them incompatible for future harmonization and integration
 📈 Test Data: 2022 – March 2023
+      - Reccomended to start out HICP inflation prediction for a smaller data date range granularity (Monthly-Quarterly) 
 🎯 Goal: Predict HICP inflation based on direct macroeconomic indicators
+      - Note: **Understand Direct Indicators vs Component Idx Datasets** Direct indicator datasets provide raw, standalone economic measures such as actual market prices of goods and services (e.g., food, gas, electricity) without being aggregated into an index, whereas direct component datasets represent categorized sub-indices of inflation, such as HICP subcategories for food or energy, which are already aggregated into the overall inflation measure. In inflation forecasting, direct indicator datasets are often used in econometric models to estimate price movements independently before aggregation, allowing for a more granular and potentially leading assessment of inflation trends, whereas direct component datasets are used within index-based models like HICP decomposition to analyze how specific categories contribute to overall inflation, helping in understanding underlying inflationary pressures rather than predicting inflation from external variables.
 
 🔹 3️⃣ Model Evaluation & Visualization
 ✅ Performance Metric: Mean Absolute Error (MAE)
@@ -65,10 +68,7 @@ EEX Energy Prices	Electricity, gas, freight market prices	Daily / Monthly
 
  
 🏗️ Repository Structure
-bash
-Copy
-Edit
-📦 HICP-Inflation-Prediction
+📦 HICP-Inflation-Predictor-Engine
 │── 📂 data/               # Processed datasets & feature-engineered files
 │── 📂 notebooks/          # Jupyter notebooks for data analysis & modeling
 │── 📂 scripts/            # Python scripts for API extraction & ML pipeline
@@ -77,15 +77,10 @@ Edit
 │── 📄 requirements.txt    # Dependencies list
 🚀 How to Run the Project
 1️⃣ Install Dependencies
-bash
-Copy
-Edit
 pip install -r requirements.txt
 2️⃣ Run Data Extraction
- 
 python scripts/data_loader.py
 3️⃣ Train the Model & Predict Inflation
- 
 python scripts/train_model.py
 4️⃣ Visualize Predictions
  
