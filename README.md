@@ -26,7 +26,7 @@ This project builds a **HICP (Harmonized Index of Consumer Prices) inflation pre
    - Provides data pull status request updates  
    - Compatible for any **Data Date Range and Granularity** (Daily - Weekly - Monthly - Annual - Quarterly)  
 
-✅ **Predictor function for macroeconomic Direct Indicators & Components** (Ration Reccomendation: 70%-30% Direct Indicator vs Component datasets) 🏦 **(ECB & Eurostat data)**  
+✅ **Predictor function for macroeconomic Direct Indicators & Components** (Ration Recommendation: 70%-30% Direct Indicator vs Component datasets) 🏦 **(ECB & Eurostat data)**  
    - **Econometric Dataset Sources**:  
      - **SI** (Balance Sheet Items)  
      - **ESA** (European System of Accounts)  
