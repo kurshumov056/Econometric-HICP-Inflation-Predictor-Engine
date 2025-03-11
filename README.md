@@ -3,7 +3,7 @@ Econometric Machine Learning Model for HICP Inflation Prediction with automated 
 
 ---
 
-## 🏦📊 HICP Inflation Prediction Using ECB (European Central Bank) & Eurostat API Data 🔥📈  
+## 🏦📊 HICP Inflation Prediction Using ECB (European Central Bank) & Eurostat API Data 📈  
 An advanced macroeconomic forecasting model leveraging direct indicators to predict Euro Area inflation.  
 Using real-time macroeconomic data, energy prices, and machine learning to enhance inflation nowcasting.  
 
